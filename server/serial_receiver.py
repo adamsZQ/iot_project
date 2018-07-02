@@ -18,6 +18,7 @@ GPIO.setup(a_pin1, GPIO.OUT)
 GPIO.setup(a_pin2, GPIO.OUT)
 GPIO.setup(b_pin1, GPIO.OUT)
 GPIO.setup(b_pin2, GPIO.OUT)
+GPIO.setup(enable_pin, GPIO.OUT)
 pwm = GPIO.PWM(enable_pin, 80)
 # 小车将以90%的占空比运行
 pwm.start(90)
