@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 import json
 import threading
 
-from server.serial_receiver import data_receiver
+from serial_receiver import data_receiver
 
 app = Flask(__name__)
 
