@@ -38,6 +38,7 @@ def init_path(path):
 
     t = threading.Thread(target=data_receiver, args=path_json)
     t.start()
+    return 'path received'
 
 
 @app.route('/switchOnCar')
