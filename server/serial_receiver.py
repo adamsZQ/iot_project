@@ -62,3 +62,7 @@ def data_receiver(path):
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
+
+
+if __name__ == '__main__':
+    data_receiver({'0':'0'})
