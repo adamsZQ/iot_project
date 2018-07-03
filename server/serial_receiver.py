@@ -28,8 +28,9 @@ ser = serial.Serial('/dev/ttyAMA0', 19200, timeout=1)
 
 def data_receiver(path):
     while True:
-        print "data_receiver running"
-        data = ser.read(100)
+        print "data_receiver runningu"
+        #ser.write(b'pi is running')
+        data = ser.read(1)
         print "this is data:", data
         for key in path:
             if data.find(key):
