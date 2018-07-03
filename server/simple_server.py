@@ -63,4 +63,5 @@ def switch_off_car():
 
 
 if __name__ == '__main__':
+    app.debug = True
     app.run(port=9988)
