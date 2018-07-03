@@ -30,6 +30,7 @@ def data_receiver(path):
     while True:
         print "data_receiver running"
         data = ser.read(100)
+        print "this is data:", data
         for key in path:
             if data.find(key):
                 # 0 直行， 1 右转， 2 停止， 3， 左转
