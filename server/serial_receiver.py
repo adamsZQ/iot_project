@@ -25,7 +25,7 @@ pwm.start(90)
 
 ser = serial.Serial('/dev/ttyAMA0', 19200, timeout=1)
 
-last_data = None
+last_data = b''
 
 
 def data_receiver(path):
@@ -33,12 +33,13 @@ def data_receiver(path):
         print "data_receiver runningu"
         #ser.write(b'pi is running')
         data = ser.read(1)
+        if len(data) < 1:
+            continue
         print "this is data:", data
         if data.find(last_data):
             continue
         last_data = data
-        if len(data) < 1:
-            continue
+
         for key in path:
             if data.find(key):
                 # 0 直行， 1 右转， 2 停止， 3， 左转
