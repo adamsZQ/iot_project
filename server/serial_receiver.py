@@ -11,7 +11,7 @@ enable_pin = 10
 a_pin1 = 2
 a_pin2 = 3
 b_pin1 = 4
-b_pin2 = 5
+b_pin2 = 17
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(a_pin1, GPIO.OUT)
@@ -25,10 +25,11 @@ pwm.start(90)
 
 ser = serial.Serial('/dev/ttyAMA0', 19200, timeout=1)
 
-last_data = b''
+#last_data = b'100'
 
 
 def data_receiver(path):
+    last_data = '100'
     while True:
         print "data_receiver runningu"
         #ser.write(b'pi is running')
@@ -36,12 +37,13 @@ def data_receiver(path):
         if len(data) < 1:
             continue
         print "this is data:", data
-        if data.find(last_data):
-            continue
-        last_data = data
-
+        #if data.find(last_data):
+            #continue
+        #last_data = data
+        print 'no repeated data'
         for key in path:
             if data.find(key):
+                print 'key matched'
                 # 0 直行， 1 右转， 2 停止， 3， 左转
                 if path[key] == 0:
                     print '直行'
@@ -49,6 +51,7 @@ def data_receiver(path):
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
+		    break
                 elif path[key] == 1:
                     print '右转'
                     GPIO.output(a_pin1, True)
@@ -60,12 +63,14 @@ def data_receiver(path):
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
+                    break
                 elif path[key] == 2:
                     print '停止'
                     GPIO.output(a_pin1, False)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, False)
                     GPIO.output(b_pin2, False)
+                    break
                 elif path[key] == 3:
                     print '左转'
                     GPIO.output(a_pin1, False)
@@ -77,4 +82,5 @@ def data_receiver(path):
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
+                    break
 

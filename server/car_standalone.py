@@ -12,8 +12,9 @@ from serial_receiver import data_receiver
 if __name__ == '__main__':
     path_json = '{"0":0, "1":1, "2":2, "3":3}'
     path_json = json.loads(path_json)
-    t = threading.Thread(target=data_receiver, args=(path_json,))
-    t.start()
+    data_receiver(path_json)
+    #t = threading.Thread(target=data_receiver, args=(path_json,))
+    #t.start()
 
 # enable_pin = 10
 # # a_pin1 = 2
