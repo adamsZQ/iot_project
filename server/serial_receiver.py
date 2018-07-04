@@ -25,6 +25,8 @@ pwm.start(90)
 
 ser = serial.Serial('/dev/ttyAMA0', 19200, timeout=1)
 
+last_data = None
+
 
 def data_receiver(path):
     while True:
@@ -32,17 +34,22 @@ def data_receiver(path):
         #ser.write(b'pi is running')
         data = ser.read(1)
         print "this is data:", data
-	if len(data)<1:
+        if data.find(last_data):
+            continue
+        last_data = data
+        if len(data) < 1:
             continue
         for key in path:
             if data.find(key):
                 # 0 直行， 1 右转， 2 停止， 3， 左转
                 if path[key] == 0:
+                    print '直行'
                     GPIO.output(a_pin1, True)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
                 elif path[key] == 1:
+                    print '右转'
                     GPIO.output(a_pin1, True)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, False)
@@ -53,11 +60,13 @@ def data_receiver(path):
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
                 elif path[key] == 2:
+                    print '停止'
                     GPIO.output(a_pin1, False)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, False)
                     GPIO.output(b_pin2, False)
                 elif path[key] == 3:
+                    print '左转'
                     GPIO.output(a_pin1, False)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
@@ -68,6 +77,3 @@ def data_receiver(path):
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
 
-
-if __name__ == '__main__':
-    data_receiver({'0':'0'})
