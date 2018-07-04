@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/7/4 下午3:58
 # @Author  : zchai
+import json
 import threading
 
 import RPi.GPIO as GPIO
@@ -10,6 +11,7 @@ from serial_receiver import data_receiver
 
 if __name__ == '__main__':
     path_json = '{"0":0, "1":1, "2":2, "3":3}'
+    path_json = json.loads(path_json)
     t = threading.Thread(target=data_receiver, args=(path_json,))
     t.start()
 

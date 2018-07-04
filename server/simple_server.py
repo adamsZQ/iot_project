@@ -36,7 +36,7 @@ def init_path(path):
     path_data = path
     path_json = json.loads(path_data)
 
-    t = threading.Thread(target=data_receiver, args=path_json)
+    t = threading.Thread(target=data_receiver, args=(path_json,))
     t.start()
     return 'path received'
 
