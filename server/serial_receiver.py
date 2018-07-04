@@ -32,6 +32,8 @@ def data_receiver(path):
         #ser.write(b'pi is running')
         data = ser.read(1)
         print "this is data:", data
+	if len(data)<1:
+            continue
         for key in path:
             if data.find(key):
                 # 0 直行， 1 右转， 2 停止， 3， 左转
