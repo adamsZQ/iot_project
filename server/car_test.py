@@ -26,21 +26,21 @@ GPIO.output(a_pin1, True)
 GPIO.output(a_pin2, False)
 GPIO.output(b_pin1, True)
 GPIO.output(b_pin2, False)
-time.sleep(3)
+time.sleep(4)
 
 # 停5s
 GPIO.output(a_pin1, False)
 GPIO.output(a_pin2, False)
 GPIO.output(b_pin1, False)
 GPIO.output(b_pin2, False)
-time.sleep(5)
+time.sleep(10)
 
 # 走3s
 GPIO.output(a_pin1, True)
 GPIO.output(a_pin2, False)
 GPIO.output(b_pin1, True)
 GPIO.output(b_pin2, False)
-time.sleep(3)
+time.sleep(1)
 
 # 左转
 GPIO.output(a_pin1, False)
