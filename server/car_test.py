@@ -21,21 +21,53 @@ pwm = GPIO.PWM(enable_pin, 200)
 # 小车将以90%的占空比运行
 pwm.start(90)
 
+# 走3s
 GPIO.output(a_pin1, True)
 GPIO.output(a_pin2, False)
 GPIO.output(b_pin1, True)
 GPIO.output(b_pin2, False)
-#time.sleep(3)
-
-#pwm.ChangeDutyCycle(90)
-
-time.sleep(3)
-pwm.ChangeDutyCycle(30)
-
-GPIO.output(enable_pin, False)
 time.sleep(3)
 
+# 停5s
 GPIO.output(a_pin1, False)
 GPIO.output(a_pin2, False)
 GPIO.output(b_pin1, False)
 GPIO.output(b_pin2, False)
+time.sleep(5)
+
+# 走3s
+GPIO.output(a_pin1, True)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, True)
+GPIO.output(b_pin2, False)
+time.sleep(3)
+
+# 左转
+GPIO.output(a_pin1, False)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, True)
+GPIO.output(b_pin2, False)
+time.sleep(0.5)
+GPIO.output(a_pin1, True)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, True)
+GPIO.output(b_pin2, False)
+time.sleep(1)
+
+# 左转
+GPIO.output(a_pin1, False)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, True)
+GPIO.output(b_pin2, False)
+time.sleep(0.5)
+GPIO.output(a_pin1, True)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, True)
+GPIO.output(b_pin2, False)
+time.sleep(3)
+
+
+
+
+
+
