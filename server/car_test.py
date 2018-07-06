@@ -66,6 +66,12 @@ GPIO.output(b_pin1, True)
 GPIO.output(b_pin2, False)
 time.sleep(3)
 
+# 停止
+GPIO.output(a_pin1, False)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, False)
+GPIO.output(b_pin2, False)
+
 
 
 
