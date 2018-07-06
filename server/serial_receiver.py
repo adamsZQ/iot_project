@@ -27,23 +27,25 @@ ser = serial.Serial('/dev/ttyAMA0', 19200, timeout=1)
 
 #last_data = b'100'
 
+sleep_time = 0.5
 
 def data_receiver(path):
     last_data = '100'
     while True:
         print "data_receiver runningu"
         #ser.write(b'pi is running')
-        data = ser.read(1)
+        data = ser.read(2)
         if len(data) < 1:
             continue
         print "this is data:", data
         #if data.find(last_data):
             #continue
         #last_data = data
-        print 'no repeated data'
+        #print 'no repeated data'
+	print int(data)
         for key in path:
-            if data.find(key):
-                print 'key matched'
+            if str(data) == str(key):
+                print 'key matched', key
                 # 0 直行， 1 右转， 2 停止， 3， 左转
                 if path[key] == 0:
                     print '直行'
@@ -52,13 +54,13 @@ def data_receiver(path):
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
 		    break
-                elif path[key] == 1:
+                elif path[key] == 3:
                     print '右转'
                     GPIO.output(a_pin1, True)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, False)
                     GPIO.output(b_pin2, False)
-                    time.sleep(0.5)
+                    time.sleep(sleep_time)
                     GPIO.output(a_pin1, True)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
@@ -71,13 +73,13 @@ def data_receiver(path):
                     GPIO.output(b_pin1, False)
                     GPIO.output(b_pin2, False)
                     break
-                elif path[key] == 3:
+                elif path[key] == 1:
                     print '左转'
                     GPIO.output(a_pin1, False)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
                     GPIO.output(b_pin2, False)
-                    time.sleep(0.5)
+                    time.sleep(sleep_time)
                     GPIO.output(a_pin1, True)
                     GPIO.output(a_pin2, False)
                     GPIO.output(b_pin1, True)
