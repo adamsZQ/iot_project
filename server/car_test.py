@@ -21,6 +21,12 @@ pwm = GPIO.PWM(enable_pin, 200)
 # 小车将以90%的占空比运行
 pwm.start(90)
 
+# 停3s
+GPIO.output(a_pin1, False)
+GPIO.output(a_pin2, False)
+GPIO.output(b_pin1, False)
+GPIO.output(b_pin2, False)
+time.sleep(3)
 # 走3s
 GPIO.output(a_pin1, True)
 GPIO.output(a_pin2, False)
